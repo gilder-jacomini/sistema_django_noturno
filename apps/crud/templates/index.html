@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt_BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 class="d-flex">Seja bem vindo ao crud!</h1>
-</body>
-</html>
+{% extends 'base-crud.html' %}
+{% block title %} CRUD | Home Page {% endblock %}
+{% block content %}
+    <div class="d-flex vh-100 justify-content-center align-items-center">
+        <h1>Home page do Sistema CRUD</h1>
+    </div>
+
+
+{% endblock %}
