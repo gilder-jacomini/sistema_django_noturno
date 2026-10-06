@@ -7,7 +7,7 @@
 
 <hr>
 {% if error %}<p>{{ error }}</p>{% endif %}
-<form action="" method="post">
+<form action="{% url 'novo_paciente' %}" method="post">
     {% csrf_token %}
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6 mb-3">
