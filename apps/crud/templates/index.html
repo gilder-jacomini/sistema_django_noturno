@@ -36,7 +36,8 @@
             <td style="padding: 8px;">{{ paciente.telefone }}</td>
             <td style="padding: 8px;">{{ paciente.data_nascimento|date:"d/m/Y" }}</td>
 
-            <td> <a href="{% url 'alterar_paciente' paciente.codigo_paciente %}"><i class="fa-regular fa-pen-to-square"></i> Editar</a> </td>
+            <td> <a href="{% url 'alterar_paciente' paciente.codigo_paciente %}" class="btn btn-primary">
+                <i class="fa-regular fa-pen-to-square"></i> Editar</a> </td>
         </tr>
         {% empty %}
         <tr>
