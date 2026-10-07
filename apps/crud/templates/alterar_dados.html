@@ -1,23 +1,23 @@
 {% extends 'base-crud.html' %}
-{% block title %} CRUD | Cadastro de Paciente {% endblock %}
+{% block title %} CRUD | Alterar Paciente {% endblock %}
 {% load static %}
 {% block content %}
 
     <h1 class="mt-5"> <i class="fa-solid fa-plus"></i>
-    Cadastrar Novo Paciente
+    Alterar Paciente
     <i class="fa-solid fa-plus"></i>
     </h1>
 
 <hr>
 {% if error %}<p>{{ error }}</p>{% endif %}
-<form action="{% url 'novo_paciente' %}" method="post">
+<form action="{% url 'alterar_paciente' paciente.codigo_paciente %}" method="post">
     {% csrf_token %}
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6 mb-3">
             <label for="nome" class="form-label">
                 Nome do Paciente:
             </label>
-            <input type="text" class="form-control" id="nome" name="nome" required>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ paciente.nome }}" required>
         </div>
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
             <label for="cpf" class="form-label">
                 CPF do Paciente:
             </label>
-            <input type="text" class="form-control" id="cpf" name="cpf" required maxlength="14">
+            <input type="text" class="form-control" id="cpf" name="cpf" value="{{ paciente.cpf }}" required maxlength="14">
         </div>
     </div>
 
@@ -34,7 +34,7 @@
             <label for="email" class="form-label">
                 Email do Paciente:
             </label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" value="{{ paciente.email }}" required>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
             <label for="telefone" class="form-label">
                 Telefone do Paciente:
             </label>
-            <input type="text" class="form-control" id="telefone" name="telefone" required>
+            <input type="text" class="form-control" id="telefone" name="telefone" value="{{ paciente.telefone }}" required>
         </div>
     </div>
 
@@ -52,15 +52,19 @@
             <label for="data_nascimento" class="form-label">
                 Data de Nascimento do Paciente:
             </label>
-            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required>
+            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ paciente.data_nascimento|date:'Y-m-d' }}" required>
         </div>
     </div>
 
     <div class="row">
         <div class="mt-4">
             <button type="submit" class="btn btn-primary"> 
-                 <i class="fa-regular fa-floppy-disk"></i> Cadastar nono Paciente
+                 <i class="fa-regular fa-floppy-disk"></i> Alterar
             </button>
+            
+             <a href="{% url 'index' %}" class="btn btn-secondary"> 
+                <i class="fa-solid fa-house"></i> Voltar 
+            </a>
         </div>
     </div>
 

@@ -1,9 +1,50 @@
 {% extends 'base-crud.html' %}
 {% block title %} CRUD | Home Page {% endblock %}
 {% block content %}
-    <div class="d-flex vh-100 justify-content-center align-items-center">
-        <h1>Home page do Sistema CRUD</h1>
+    <div class="row mt-5">
+        <h1>Olá {{ user.username }}, seja bem vindo!</h1>
     </div>
+    <hr>
+    <div class="row mt-5">
+        <h2>Lista de Pacientes</h2>
+        <!-- <ul>
+            {% for paciente in pacientes %}
+                <li>{{ paciente.codigo_paciente }} | {{ paciente.nome }} | {{ paciente.cpf }} | {{ paciente.email }} | {{ paciente.telefone }} | {{ paciente.data_nascimento|date:"d/n/Y" }}</li>
+            {% empty %}
+                <li>Nenhum paciente cadastrado.</li>
+            {% endfor %}
+        </ul> -->
 
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+        <tr style="border-bottom: 2px solid #ccc;">
+            <th style="padding: 8px;">Código</th>
+            <th style="padding: 8px;">Nome</th>
+            <th style="padding: 8px;">CPF</th>
+            <th style="padding: 8px;">E-mail</th>
+            <th style="padding: 8px;">Telefone</th>
+            <th style="padding: 8px;">Data de Nasc.</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paciente in pacientes %}
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 8px;">{{ paciente.codigo_paciente }}</td>
+            <td style="padding: 8px;">{{ paciente.nome }}</td>
+            <td style="padding: 8px;">{{ paciente.cpf }}</td>
+            <td style="padding: 8px;">{{ paciente.email }}</td>
+            <td style="padding: 8px;">{{ paciente.telefone }}</td>
+            <td style="padding: 8px;">{{ paciente.data_nascimento|date:"d/m/Y" }}</td>
+
+            <td> <a href="{% url 'alterar_paciente' paciente.codigo_paciente %}"><i class="fa-regular fa-pen-to-square"></i> Editar</a> </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" style="padding: 8px; text-align: center;">Nenhum paciente cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
 
 {% endblock %}
