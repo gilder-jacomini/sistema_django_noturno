@@ -24,6 +24,7 @@
             <th style="padding: 8px;">E-mail</th>
             <th style="padding: 8px;">Telefone</th>
             <th style="padding: 8px;">Data de Nasc.</th>
+            <th style="padding: 8px;">Sintomas</th>
         </tr>
     </thead>
     <tbody>
@@ -35,9 +36,11 @@
             <td style="padding: 8px;">{{ paciente.email }}</td>
             <td style="padding: 8px;">{{ paciente.telefone }}</td>
             <td style="padding: 8px;">{{ paciente.data_nascimento|date:"d/m/Y" }}</td>
+            <td style="padding: 8px;">{{ paciente.sintomas }}</td>
 
             <td> <a href="{% url 'alterar_paciente' paciente.codigo_paciente %}" class="btn btn-primary">
-                <i class="fa-regular fa-pen-to-square"></i> Editar</a> </td>
+                <i class="fa-regular fa-pen-to-square"></i> Editar </a> 
+                <a href="{% url 'excluir_paciente' paciente.codigo_paciente %}"class="btn btn-danger"> <i class="fa-solid fa-trash"></i> Excluir </a> </td>
         </tr>
         {% empty %}
         <tr>
