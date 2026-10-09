@@ -12,58 +12,8 @@
 {% if error %}<p>{{ error }}</p>{% endif %}
 <form action="{% url 'alterar_paciente' paciente.codigo_paciente %}" method="post">
     {% csrf_token %}
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="nome" class="form-label">
-                Nome do Paciente:
-            </label>
-            <input type="text" class="form-control" id="nome" name="nome" value="{{ paciente.nome }}" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="cpf" class="form-label">
-                CPF do Paciente:
-            </label>
-            <input type="text" class="form-control" id="cpf" name="cpf" value="{{ paciente.cpf }}" required maxlength="14">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="email" class="form-label">
-                Email do Paciente:
-            </label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ paciente.email }}" required>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="telefone" class="form-label">
-                Telefone do Paciente:
-            </label>
-            <input type="text" class="form-control" id="telefone" name="telefone" value="{{ paciente.telefone }}" required>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="data_nascimento" class="form-label">
-                Data de Nascimento do Paciente:
-            </label>
-            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ paciente.data_nascimento|date:'Y-m-d' }}" required>
-        </div>
-    </div>
-
-         <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="sintomas" class="form-label">
-                Sintomas do Paciente:
-            </label>
-            <textarea class="form-control" id="sintomas" name="sintomas" rows="3">{{ paciente.sintomas }}</textarea>
-        </div>
-    </div>
-
+    {% include 'includes/form.html' %}
+    
     <div class="row">
         <div class="mt-4">
             <button type="submit" class="btn btn-primary"> 

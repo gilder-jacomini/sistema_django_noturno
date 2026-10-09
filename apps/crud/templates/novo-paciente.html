@@ -12,65 +12,13 @@
 {% if error %}<p>{{ error }}</p>{% endif %}
 <form action="{% url 'novo_paciente' %}" method="post">
     {% csrf_token %}
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="nome" class="form-label">
-                Nome do Paciente:
-            </label>
-            <input type="text" class="form-control" id="nome" name="nome" required>
-        </div>
+    {% include 'includes/form.html' %}
+    <div class="d-flex justify-content-start mt-5 mb-5">
+        <button type="submit" class="btn btn-primary"> 
+                <i class="fa-regular fa-floppy-disk"></i> Cadastar nono Paciente
+        </button>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="cpf" class="form-label">
-                CPF do Paciente:
-            </label>
-            <input type="text" class="form-control" id="cpf" name="cpf" required maxlength="14">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="email" class="form-label">
-                Email do Paciente:
-            </label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="telefone" class="form-label">
-                Telefone do Paciente:
-            </label>
-            <input type="text" class="form-control" id="telefone" name="telefone" required>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mb-3">
-            <label for="data_nascimento" class="form-label">
-                Data de Nascimento do Paciente:
-            </label>
-            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required>
-        </div>
-    </div>
-
-    <div class="col-12 mb-3">
-        <label for="sintomas" class="form-label">
-                Sintomas do Paciente:
-        </label>
-        <textarea class="form-control" id="sintomas" name="sintomas" rows="3"></textarea>
-    </div>
-
-    <div class="row">
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary"> 
-                 <i class="fa-regular fa-floppy-disk"></i> Cadastar nono Paciente
-            </button>
-        </div>
-    </div>
-
+   
 </form>
 
 <script src="{% static 'js/script.js' %}"></script>
