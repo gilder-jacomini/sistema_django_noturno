@@ -1,0 +1,58 @@
+Instale o Faker
+No terminal do projeto, execute:
+
+bash
+python -m pip install Faker
+
+Depois, cole o código completo:
+
+python
+
+import random
+from faker import Faker
+from apps.crud.models import Paciente
+
+fake = Faker("pt_BR")
+
+sintomas_lista = [
+    "Dor de cabeça e tontura",
+    "Febre e dor no corpo",
+    "Tosse seca e dor de garganta",
+    "Dor abdominal",
+    "Náusea e vômito",
+    "Cansaço e fraqueza",
+    "Dor nas costas",
+    "Coriza e espirros",
+    "Dor muscular",
+    "Enxaqueca",
+    "Febre e tosse",
+    "Dor nas articulações",
+    "Alergia na pele",
+    "Insônia",
+    "Dor de garganta",
+    "Tontura frequente",
+    "Congestão nasal",
+    "Nenhum sintoma informado",
+]
+
+total_antes = Paciente.objects.count()
+
+for i in range(130):
+    paciente = Paciente(
+        nome=fake.name(),
+        cpf=fake.cpf(),
+        email=f"paciente.extra{i + 1}@example.com",
+        telefone="11999990000",
+        data_nascimento=fake.date_of_birth(
+            minimum_age=18,
+            maximum_age=85
+        ),
+        sintomas=random.choice(sintomas_lista),
+    )
+    paciente.save()
+
+total_depois = Paciente.objects.count()
+
+print("Cadastro finalizado!")
+print(f"Novos pacientes: {total_depois - total_antes}")
+print(f"Total de pacientes: {total_depois}")

@@ -1,54 +1,131 @@
 {% extends 'base-crud.html' %}
-{% block title %} CRUD | Home Page {% endblock %}
+{% block title %}CRUD | Home Page{% endblock %}
 {% block content %}
-    <div class="row mt-5">
-        <h1>Olá {{ user.username }}, seja bem vindo!</h1>
-    </div>
-    <hr>
-    <div class="row mt-5">
-        <h2>Lista de Pacientes</h2>
-        <!-- <ul>
-            {% for paciente in pacientes %}
-                <li>{{ paciente.codigo_paciente }} | {{ paciente.nome }} | {{ paciente.cpf }} | {{ paciente.email }} | {{ paciente.telefone }} | {{ paciente.data_nascimento|date:"d/n/Y" }}</li>
-            {% empty %}
-                <li>Nenhum paciente cadastrado.</li>
-            {% endfor %}
-        </ul> -->
 
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
-    <thead>
-        <tr style="border-bottom: 2px solid #ccc;">
-            <th style="padding: 8px;">Código</th>
-            <th style="padding: 8px;">Nome</th>
-            <th style="padding: 8px;">CPF</th>
-            <th style="padding: 8px;">E-mail</th>
-            <th style="padding: 8px;">Telefone</th>
-            <th style="padding: 8px;">Data de Nasc.</th>
-            <th style="padding: 8px;">Sintomas</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="container-fluid py-4">
+
+    <!-- Boas-vindas -->
+    <div class="row mt-3 mb-4">
+        <div class="col-12">
+            <h1 class="h3">
+                Olá {{ user.username }}, seja bem-vindo!
+            </h1>
+            <p class="text-muted mb-0">
+                Confira a lista de pacientes cadastrados.
+            </p>
+        </div>
+    </div>
+
+    <hr class="mb-4">
+
+    <!-- Título da lista -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h4">Lista de Pacientes</h2>
+        </div>
+    </div>
+
+    <!-- Lista de cards -->
+    <div class="row g-4">
+
         {% for paciente in pacientes %}
-        <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 8px;">{{ paciente.codigo_paciente }}</td>
-            <td style="padding: 8px;">{{ paciente.nome }}</td>
-            <td style="padding: 8px;">{{ paciente.cpf }}</td>
-            <td style="padding: 8px;">{{ paciente.email }}</td>
-            <td style="padding: 8px;">{{ paciente.telefone }}</td>
-            <td style="padding: 8px;">{{ paciente.data_nascimento|date:"d/m/Y" }}</td>
-            <td style="padding: 8px;">{{ paciente.sintomas }}</td>
 
-            <td> <a href="{% url 'alterar_paciente' paciente.codigo_paciente %}" class="btn btn-primary">
-                <i class="fa-regular fa-pen-to-square"></i> Editar </a> 
-                <a href="{% url 'excluir_paciente' paciente.codigo_paciente %}"class="btn btn-danger"> <i class="fa-solid fa-trash"></i> Excluir </a> </td>
-        </tr>
+        <div class="col-12 col-md-6 col-xl-4">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <!-- Cabeçalho do card -->
+                <div class="card-header bg-primary text-white p-2">
+                    <h5 class="card-title mb-1">
+                        <i class="fa-solid fa-user"></i> - {{ paciente.nome }}
+                    </h5>
+
+                    <small>
+                        Código: {{ paciente.codigo_paciente }}
+                    </small>
+                </div>
+
+                <!-- Informações do paciente -->
+                <div class="card-body">
+
+                    <p class="mb-2">
+                        <strong>CPF:</strong>
+                        {{ paciente.cpf }}
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>E-mail:</strong>
+                        <span class="text-break">
+                            {{ paciente.email }}
+                        </span>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Telefone:</strong>
+                        {{ paciente.telefone }}
+                    </p>
+
+                    <p class="mb-3">
+                        <strong>Data de nascimento:</strong>
+                        {{ paciente.data_nascimento|date:"d/m/Y" }}
+                    </p>
+
+                    <hr>
+
+                    <h6 class="text-danger">
+                        <i class="fa-solid fa-notes-medical text-danger"></i>
+                        Sintomas
+                    </h6>
+
+                    <p class="text-muted mb-0">
+                        {{ paciente.sintomas|default:"Nenhum sintoma informado" }}
+                    </p>
+
+                </div>
+
+                <!-- Botões de ação -->
+                <div class="card-footer bg-white border-0 p-3">
+
+                    <div class="d-flex flex-wrap gap-2 justify-content-end">
+
+                        <a
+                            href="{% url 'alterar_paciente' paciente.codigo_paciente %}"
+                            class="btn btn-primary btn-sm"
+                        >
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Editar
+                        </a>
+
+                        <a
+                            href="{% url 'excluir_paciente' paciente.codigo_paciente %}"
+                            class="btn btn-danger btn-sm"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                            Excluir
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
         {% empty %}
-        <tr>
-            <td colspan="6" style="padding: 8px; text-align: center;">Nenhum paciente cadastrado.</td>
-        </tr>
+
+        <!-- Mensagem quando não existem pacientes -->
+        <div class="col-12">
+            <div class="alert alert-info text-center" role="alert">
+                <i class="fa-solid fa-circle-info"></i>
+                Nenhum paciente cadastrado.
+            </div>
+        </div>
+
         {% endfor %}
-    </tbody>
-</table>
+
     </div>
+
+</div>
 
 {% endblock %}

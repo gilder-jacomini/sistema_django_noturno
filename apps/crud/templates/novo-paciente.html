@@ -10,7 +10,7 @@
 
 <hr>
 {% if error %}<p>{{ error }}</p>{% endif %}
-<form action="{% url 'novo_paciente' %}" method="post">
+<form action="{% url 'novo_paciente' %}" method="POST">
     {% csrf_token %}
     {% include 'includes/form.html' %}
     <div class="d-flex justify-content-start mt-5 mb-5">
